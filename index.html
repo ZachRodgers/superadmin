@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Device Manager</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
@@ -26,7 +26,6 @@
         .sidebar .logo {
             display: flex;
             justify-content: center;
-            margin-bottom: 10px;
         }
         .sidebar .logo img {
             height: 25px;
@@ -34,12 +33,12 @@
         .sidebar .superadmin {
             background: #FFFFFF;
             color: #000000;
-            padding: 5px 10px;
-            font-weight: 700;
+            padding: 3px 8px;
+            font-weight: 600;
             text-align: center;
             border-radius: 4px;
             width: fit-content;
-            margin: 0 auto 10px;
+            margin: 5px auto 0;
         }
         .sidebar .device-id {
             border: 2px solid #FFFFFF;
@@ -48,13 +47,8 @@
             padding: 5px 15px;
             font-size: 18px;
             text-align: center;
-            margin: 0 auto;
+            margin: 5px auto 10px;
             width: fit-content;
-        }
-        .sidebar .back {
-            text-align: center;
-            color: #A8A8B8;
-            margin: 10px 0;
         }
         .sidebar .menu {
             list-style: none;
@@ -67,12 +61,17 @@
         .sidebar .menu li {
             padding: 10px 20px;
             border-radius: 4px;
-            background-color: #363941;
+            color: #FFFFFF;
+            font-weight: 400;
             cursor: pointer;
-            color: #E5E5E5;
         }
         .sidebar .menu li.active {
-            background-color: #1782FF;
+            color: #1782FF;
+            font-weight: 600;
+            background-color: transparent;
+        }
+        .sidebar .menu li:hover {
+            background-color: transparent;
         }
         .sidebar .menu li a {
             color: inherit;
@@ -84,6 +83,12 @@
         }
         .sidebar .footer a {
             color: #E5E5E5;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+        .sidebar .footer a:first-child {
+            margin-bottom: 10px;
         }
         .content {
             flex-grow: 1;
@@ -125,15 +130,15 @@
         }
         .device-info h2 {
             margin: 0;
-            font-size: 16px;
+            font-size: 14px;
             color: #FFFFFF;
             font-weight: normal;
         }
         .device-info p {
             margin: 5px 0 0;
-            font-size: 14px;
-            color: #8A8B8B;
-            font-weight: normal;
+            font-size: 20px;
+            color: #FFFFFF;
+            font-weight: 600;
         }
         .device-actions {
             display: flex;
@@ -172,7 +177,6 @@
         </div>
         <div class="superadmin">SUPERADMIN</div>
         <div class="device-id">0000-0001</div>
-        <div class="back">&lt; Back</div>
         <ul class="menu">
             <li class="active"><a href="#">Device Manager</a></li>
             <li><a href="#">Vehicle Log</a></li>
@@ -180,8 +184,7 @@
             <li><a href="#">Customer</a></li>
         </ul>
         <div class="footer">
-            <a href="#">Admin Portal</a>
-            <br>
+            <a href="#">🡥  Admin Portal</a>
             <a href="#">Send Message</a>
         </div>
     </div>
@@ -190,8 +193,9 @@
         <div class="device-list">
             <div class="device online">
                 <div class="device-info">
+                    <p>Online 32°C</p>
                     <h2>0000-0001a</h2>
-                    <p>Online 32°C<br>Updated 10 seconds ago.</p>
+                    <p>Updated 10 seconds ago.</p>
                 </div>
                 <div class="device-actions">
                     <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon">Shutdown</button>
@@ -203,8 +207,9 @@
             </div>
             <div class="device offline">
                 <div class="device-info">
+                    <p>Offline</p>
                     <h2>0000-0001b</h2>
-                    <p>Offline<br>Last seen 3 days ago.</p>
+                    <p>Last seen 3 days ago.</p>
                 </div>
                 <div class="device-actions">
                     <button class="disabled"><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon">Shutdown</button>
