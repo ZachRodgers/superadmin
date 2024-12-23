@@ -9,13 +9,13 @@
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: #272A30;
+            background-color: #1E1F21;
             color: #E5E5E5;
             display: flex;
         }
         .sidebar {
             width: 400px;
-            background-color: #1E1F21;
+            background-color: #272A30;
             padding: 20px;
             box-sizing: border-box;
             display: flex;
@@ -29,24 +29,31 @@
             margin-bottom: 10px;
         }
         .sidebar .logo img {
-            height: 30px;
+            height: 25px;
         }
         .sidebar .superadmin {
             background: #FFFFFF;
             color: #000000;
-            padding: 2px 8px;
+            padding: 5px 10px;
             font-weight: 700;
             text-align: center;
             border-radius: 4px;
+            margin-bottom: 10px;
         }
         .sidebar .device-id {
             border: 2px solid #FFFFFF;
             color: #FFFFFF;
             border-radius: 10px;
             padding: 5px 15px;
-            font-size: 18px;
-            width: auto;
-            margin: 10px auto;
+            font-size: 20px;
+            text-align: center;
+            margin: 0 auto;
+            width: fit-content;
+        }
+        .sidebar .back {
+            text-align: center;
+            color: #A8A8B8;
+            margin: 10px 0;
         }
         .sidebar .menu {
             list-style: none;
@@ -70,11 +77,6 @@
             color: inherit;
             text-decoration: none;
         }
-        .sidebar .back {
-            text-align: center;
-            color: #A8A8B8;
-            margin: 10px 0;
-        }
         .sidebar .footer {
             margin-top: auto;
             text-align: center;
@@ -90,8 +92,9 @@
             margin: 0 auto;
         }
         .content h1 {
-            margin: 10px 0 20px;
-            font-size: 24px;
+            margin: 0 0 20px;
+            font-size: 28px;
+            font-weight: bold;
             text-align: left;
         }
         .device-list {
@@ -126,7 +129,7 @@
         }
         .device-info p {
             margin: 5px 0 0;
-            font-size: 18px;
+            font-size: 20px;
             color: #FFFFFF;
             font-weight: bold;
         }
@@ -135,13 +138,13 @@
             gap: 20px;
         }
         .device-actions button {
-            background-color: #1E1F21;
+            background-color: #272A30;
             color: #E5E5E5;
             border: none;
             padding: 15px;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             font-size: 14px;
             display: flex;
             align-items: center;
@@ -149,8 +152,8 @@
             flex-direction: column;
         }
         .device-actions button img {
-            height: 20px;
-            width: 20px;
+            height: 25px;
+            width: 25px;
             margin-bottom: 5px;
         }
         .network-info {
