@@ -28,12 +28,8 @@
             align-items: center;
             gap: 10px;
         }
-        .sidebar .logo span {
-            background: #FFFFFF;
-            color: #000000;
-            padding: 2px 8px;
-            font-weight: 700;
-            border-radius: 4px;
+        .sidebar .logo img {
+            height: 40px;
         }
         .sidebar .menu {
             list-style: none;
@@ -129,9 +125,9 @@
             opacity: 0.3;
             pointer-events: none;
         }
-        .device-actions button svg {
-            width: 14px;
+        .device-actions button img {
             height: 14px;
+            width: 14px;
         }
         .network-info {
             font-size: 12px;
@@ -143,8 +139,7 @@
 <body>
     <div class="sidebar">
         <div class="logo">
-            <h1>Parallel</h1>
-            <span>SUPERADMIN</span>
+            <img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/LogotypeThin.svg" alt="Logo">
         </div>
         <div>
             <button class="device-id" style="background-color: #363941; color: #E5E5E5; width: 100%;">0000-0001</button>
@@ -171,8 +166,8 @@
                     <p>Online 32°C<br>Updated 10 seconds ago.</p>
                 </div>
                 <div class="device-actions">
-                    <button><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 6v.01" /></svg>Shutdown</button>
-                    <button><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 6v.01" /></svg>Reboot</button>
+                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon">Shutdown</button>
+                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon">Reboot</button>
                 </div>
                 <div class="network-info">
                     <p>Network<br>Ping 132ms<br>↑ 128mbps ↓ 101mbps</p>
@@ -184,8 +179,8 @@
                     <p>Offline<br>Last seen 3 days ago.</p>
                 </div>
                 <div class="device-actions">
-                    <button class="disabled"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 6v.01" /></svg>Shutdown</button>
-                    <button class="disabled"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 6v.01" /></svg>Reboot</button>
+                    <button class="disabled"><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon">Shutdown</button>
+                    <button class="disabled"><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon">Reboot</button>
                 </div>
                 <div class="network-info">
                     <p>Network<br>N/A</p>
