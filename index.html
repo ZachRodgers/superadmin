@@ -264,8 +264,71 @@
             document.querySelector('.add-new-device .device-info h2').innerText = getNextLotId();
         }
 
+        function navigate(page) {
+            const pages = ["Device Manager", "Vehicle Log", "Billing Calculator", "Customer"];
+            document.querySelectorAll('.menu li').forEach((li, index) => {
+                li.classList.toggle('active', index === page);
+            });
+            const content = document.querySelector('.content');
+            if (page === 0) {
+                content.innerHTML = `
+                    <h1>Device Manager</h1>
+                    <div class="device-list">
+                        <div class="device online">
+                            <div class="device-info">
+                                <h2>0000-0001a</h2>
+                                <p class="status">Online 32°C</p>
+                                <p class="updated">Updated 10 seconds ago.</p>
+                            </div>
+                            <div class="device-actions">
+                                <div class="action">
+                                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon"></button>
+                                    <span>Shutdown</span>
+                                </div>
+                                <div class="action">
+                                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon"></button>
+                                    <span>Reboot</span>
+                                </div>
+                            </div>
+                            <div class="network-info">
+                                <p>Network<br>Ping 132ms<br>↑ 128mbps ↓ 101mbps</p>
+                            </div>
+                        </div>
+                        <div class="device offline">
+                            <div class="device-info">
+                                <h2>0000-0001b</h2>
+                                <p class="status">Offline</p>
+                                <p class="updated">Last seen 3 days ago.</p>
+                            </div>
+                            <div class="device-actions">
+                                <div class="action">
+                                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon"></button>
+                                    <span>Shutdown</span>
+                                </div>
+                                <div class="action">
+                                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon"></button>
+                                    <span>Reboot</span>
+                                </div>
+                            </div>
+                            <div class="network-info">
+                                <p>Network<br>N/A</p>
+                            </div>
+                        </div>
+                        <div class="add-new-device" onclick="addNewDevice()">
+                            <div class="device-info">
+                                <h2>0000-0001c</h2>
+                                <p class="status">+ Add New Device</p>
+                            </div>
+                        </div>
+                    </div>`;
+                adjustInitialRows();
+            } else {
+                content.innerHTML = `<h1>${pages[page]}</h1>`;
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            adjustInitialRows();
+            navigate(0);
         });
     </script>
 </head>
@@ -276,10 +339,10 @@
         </div>
         <div class="device-id">0000-0001</div>
         <ul class="menu">
-            <li class="active"><a href="#">Device Manager</a></li>
-            <li><a href="#">Vehicle Log</a></li>
-            <li><a href="#">Billing Calculator</a></li>
-            <li><a href="#">Customer</a></li>
+            <li class="active" onclick="navigate(0)"><a href="#">Device Manager</a></li>
+            <li onclick="navigate(1)"><a href="#">Vehicle Log</a></li>
+            <li onclick="navigate(2)"><a href="#">Billing Calculator</a></li>
+            <li onclick="navigate(3)"><a href="#">Customer</a></li>
         </ul>
         <div class="footer">
             <a href="#">🡥 Admin Portal</a>
@@ -288,54 +351,6 @@
     </div>
     <div class="content">
         <h1>Device Manager</h1>
-        <div class="device-list">
-            <div class="device online">
-                <div class="device-info">
-                    <h2>0000-0001a</h2>
-                    <p class="status">Online 32°C</p>
-                    <p class="updated">Updated 10 seconds ago.</p>
-                </div>
-                <div class="device-actions">
-                    <div class="action">
-                        <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon"></button>
-                        <span>Shutdown</span>
-                    </div>
-                    <div class="action">
-                        <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon"></button>
-                        <span>Reboot</span>
-                    </div>
-                </div>
-                <div class="network-info">
-                    <p>Network<br>Ping 132ms<br>↑ 128mbps ↓ 101mbps</p>
-                </div>
-            </div>
-            <div class="device offline">
-                <div class="device-info">
-                    <h2>0000-0001b</h2>
-                    <p class="status">Offline</p>
-                    <p class="updated">Last seen 3 days ago.</p>
-                </div>
-                <div class="device-actions">
-                    <div class="action">
-                        <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon"></button>
-                        <span>Shutdown</span>
-                    </div>
-                    <div class="action">
-                        <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon"></button>
-                        <span>Reboot</span>
-                    </div>
-                </div>
-                <div class="network-info">
-                    <p>Network<br>N/A</p>
-                </div>
-            </div>
-            <div class="add-new-device" onclick="addNewDevice()">
-                <div class="device-info">
-                    <h2>0000-0001c</h2>
-                    <p class="status">+ Add New Device</p>
-                </div>
-            </div>
-        </div>
     </div>
 </body>
 </html>
