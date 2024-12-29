@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parallel Superadmin</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="Favicon.png">
+    <link rel="apple-touch-icon" type="image/png" href="WebclipIcon.png">
     <style>
         body {
             margin: 0;
@@ -211,7 +213,6 @@
         function addNewDevice() {
             const deviceList = document.querySelector('.device-list');
 
-            // Create a new device row
             const newDevice = document.createElement('div');
             newDevice.classList.add('device', 'offline');
 
@@ -239,14 +240,10 @@
                 </div>
             `;
 
-            // Append the new device above the add button
             const addButton = document.querySelector('.add-new-device');
             deviceList.insertBefore(newDevice, addButton);
 
-            // Increment lot ID
             currentLotId++;
-
-            // Adjust the add button color and update its next lot ID
             const totalDevices = deviceList.querySelectorAll('.device').length;
             addButton.style.backgroundColor = totalDevices % 2 === 0 ? '#363941' : '#2B2E35';
             document.querySelector('.add-new-device .device-info h2').innerText = getNextLotId();
