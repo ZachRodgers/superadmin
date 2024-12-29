@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Device Manager</title>
+    <title>Parallel Superadmin</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
             font-family: 'Montserrat', sans-serif;
-            background-color: #1E1F21;
+            background-color: #272A30;
             color: #E5E5E5;
             display: flex;
         }
         .sidebar {
-            width: 400px;
-            background-color: #272A30;
-            padding: 20px;
+            width: 300px;
+            background-color: #1E1F21;
+            padding: 40px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -26,38 +26,35 @@
         .sidebar .logo {
             display: flex;
             justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
         .sidebar .logo img {
-            height: 25px;
-        }
-        .sidebar .superadmin {
-            background: #FFFFFF;
-            color: #000000;
-            padding: 3px 8px;
-            font-weight: 600;
-            text-align: center;
-            border-radius: 4px;
-            width: fit-content;
-            margin: 5px auto 0;
-            font-size: 14px;
+            width: 150px;
+            height: 40px;
+            margin-bottom: -10px;
         }
         .sidebar .device-id {
             border: 2px solid #FFFFFF;
             color: #FFFFFF;
+            font-weight: 600;
             border-radius: 10px;
-            padding: 5px 15px;
-            font-size: 14px;
+            padding: 10px 10px;
+            font-size: 18px;
             text-align: center;
-            margin: 5px auto 10px;
-            width: fit-content;
+            margin: 0 auto;
+            width: 150px;
+            margin-bottom: 40px;
         }
         .sidebar .menu {
             list-style: none;
             padding: 0;
             margin: 0;
             display: flex;
+            justify-content: center;
+            align-items: flex-start;
             flex-direction: column;
-            gap: 10px;
+            gap: 20px;
         }
         .sidebar .menu li {
             padding: 10px 20px;
@@ -70,9 +67,10 @@
             background-color: #FFFFFF;
             color: #1782FF;
             font-weight: 600;
+            padding: 15px 25px;
         }
         .sidebar .menu li:hover {
-            background-color: transparent;
+            font-weight: 600;
         }
         .sidebar .menu li a {
             color: inherit;
@@ -82,25 +80,23 @@
             margin-top: auto;
             text-align: left;
             padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
         }
         .sidebar .footer a {
             color: #E5E5E5;
             text-decoration: none;
-            display: block;
-            margin: 5px 0;
-        }
-        .sidebar .footer a:first-child {
-            margin-bottom: 10px;
         }
         .content {
             flex-grow: 1;
-            padding: 20px;
+            padding: 50px;
             box-sizing: border-box;
             max-width: 1280px;
             margin: 0 auto;
         }
         .content h1 {
-            margin: 0 0 20px;
+            margin: 0 0 30px;
             font-size: 28px;
             font-weight: bold;
             text-align: left;
@@ -112,11 +108,11 @@
         }
         .device {
             background-color: #363941;
-            padding: 15px 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
             border-left: 5px solid transparent;
+            height: 80px;
+            padding: 10px 40px 10px 10px;
         }
         .device:nth-child(even) {
             background-color: #2B2E35;
@@ -128,10 +124,14 @@
             border-left-color: #ED4343;
         }
         .device-info {
-            flex-grow: 1;
+            flex: 1;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .device-info h2 {
-            margin: 0;
+            margin: 0 0 2px 0;
             font-size: 14px;
             color: #FFFFFF;
             font-weight: normal;
@@ -143,61 +143,57 @@
             font-weight: 600;
         }
         .device-info p.updated {
-            margin: 5px 0 0;
+            margin: 2px 0 0;
             font-size: 14px;
             color: #8A8B8B;
             font-weight: normal;
         }
         .device-actions {
+            flex: 1;
             display: flex;
-            gap: 20px;
-            align-items: center;
+            justify-content: center;
+            gap: 30px;
         }
         .device-actions button {
             background-color: #272A30;
             color: #E5E5E5;
             border: none;
-            padding: 15px;
             border-radius: 50%;
-            width: 70px;
-            height: 70px;
-            font-size: 14px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
         }
         .device-actions button img {
-            height: 30px;
-            width: 30px;
-            margin-bottom: 5px;
+            height: 24px;
+            width: 24px;
         }
         .device-actions button span {
-            font-size: 12px;
             margin-top: 5px;
+            font-size: 12px;
         }
         .network-info {
+            flex: 1;
             font-size: 12px;
             text-align: right;
             color: #A8A8B8;
         }
         .add-new-device {
-            height: 70px;
+            background-color: #363941;
+            height: 80px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background-color: #363941;
-            padding: 15px 20px;
-            border-left: 5px solid transparent;
+            padding: 10px 40px 10px 10px;
+            border-left: 5px solid #2D3037;
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <div class="logo">
-            <img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/LogotypeThin.svg" alt="Logo">
+            <img src="LogotypeSuperadmin.svg" alt="Logo">
         </div>
-        <div class="superadmin">SUPERADMIN</div>
         <div class="device-id">0000-0001</div>
         <ul class="menu">
             <li class="active"><a href="#">Device Manager</a></li>
@@ -215,13 +211,13 @@
         <div class="device-list">
             <div class="device online">
                 <div class="device-info">
-                    <p class="status">Online 32°C</p>
                     <h2>0000-0001a</h2>
+                    <p class="status">Online 32°C</p>
                     <p class="updated">Updated 10 seconds ago.</p>
                 </div>
                 <div class="device-actions">
-                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon"><span>Shutdown</span></button>
-                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon"><span>Reboot</span></button>
+                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon"></button>
+                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon"></button>
                 </div>
                 <div class="network-info">
                     <p>Network<br>Ping 132ms<br>↑ 128mbps ↓ 101mbps</p>
@@ -229,13 +225,13 @@
             </div>
             <div class="device offline">
                 <div class="device-info">
-                    <p class="status">Offline</p>
                     <h2>0000-0001b</h2>
+                    <p class="status">Offline</p>
                     <p class="updated">Last seen 3 days ago.</p>
                 </div>
                 <div class="device-actions">
-                    <button class="disabled"><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon"><span>Shutdown</span></button>
-                    <button class="disabled"><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon"><span>Reboot</span></button>
+                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon"></button>
+                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon"></button>
                 </div>
                 <div class="network-info">
                     <p>Network<br>N/A</p>
