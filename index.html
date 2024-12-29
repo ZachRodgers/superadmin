@@ -22,6 +22,8 @@
             flex-direction: column;
             gap: 20px;
             height: 100vh;
+            position: sticky;
+            top: 0;
         }
         .sidebar .logo {
             display: flex;
@@ -42,7 +44,7 @@
             font-size: 18px;
             text-align: center;
             margin: 0 auto;
-            width: 150px;
+            width: 130px;
             margin-bottom: 40px;
         }
         .sidebar .menu {
@@ -113,9 +115,6 @@
             height: 80px;
             padding: 10px 40px 10px 10px;
         }
-        .device:nth-child(even) {
-            background-color: #2B2E35;
-        }
         .device.online {
             border-left-color: #33E733;
         }
@@ -153,6 +152,12 @@
             justify-content: center;
             gap: 30px;
         }
+        .device-actions .action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
         .device-actions button {
             background-color: #272A30;
             color: #E5E5E5;
@@ -163,14 +168,23 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 1;
+        }
+        .device.offline .device-actions button {
+            opacity: 0.4;
+            pointer-events: none;
         }
         .device-actions button img {
             height: 24px;
             width: 24px;
         }
-        .device-actions button span {
+        .device-actions span {
             margin-top: 5px;
             font-size: 12px;
+            color: #E5E5E5;
+        }
+        .device.offline .device-actions span {
+            opacity: 0.4;
         }
         .network-info {
             flex: 1;
@@ -179,14 +193,76 @@
             color: #A8A8B8;
         }
         .add-new-device {
-            background-color: #363941;
             height: 80px;
             display: flex;
             align-items: center;
             padding: 10px 40px 10px 10px;
             border-left: 5px solid #2D3037;
+            cursor: pointer;
         }
     </style>
+    <script>
+        let currentLotId = 2;
+        const getNextLotId = () => {
+            const letters = 'abcdefghijklmnopqrstuvwxyz';
+            return `0000-0001${letters[currentLotId++]}`;
+        };
+
+        function addNewDevice() {
+            const deviceList = document.querySelector('.device-list');
+
+            // Create a new device row
+            const newDevice = document.createElement('div');
+            newDevice.classList.add('device', 'offline');
+
+            const totalRows = deviceList.querySelectorAll('.device').length;
+            newDevice.style.backgroundColor = totalRows % 2 === 0 ? '#363941' : '#2B2E35';
+
+            newDevice.innerHTML = `
+                <div class="device-info">
+                    <h2>${getNextLotId()}</h2>
+                    <p class="status">Offline</p>
+                    <p class="updated">Recently added</p>
+                </div>
+                <div class="device-actions">
+                    <div class="action">
+                        <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon"></button>
+                        <span>Shutdown</span>
+                    </div>
+                    <div class="action">
+                        <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon"></button>
+                        <span>Reboot</span>
+                    </div>
+                </div>
+                <div class="network-info">
+                    <p>Network<br>N/A</p>
+                </div>
+            `;
+
+            // Append the new device above the add button
+            const addButton = document.querySelector('.add-new-device');
+            deviceList.insertBefore(newDevice, addButton);
+
+            // Adjust the add button color
+            const totalDevices = deviceList.querySelectorAll('.device').length;
+            addButton.style.backgroundColor = totalDevices % 2 === 0 ? '#363941' : '#2B2E35';
+        }
+
+        function adjustInitialRows() {
+            const rows = document.querySelectorAll('.device-list > .device');
+            rows.forEach((row, index) => {
+                row.style.backgroundColor = index % 2 === 0 ? '#363941' : '#2B2E35';
+            });
+
+            const addButton = document.querySelector('.add-new-device');
+            const lastRow = rows[rows.length - 1];
+            addButton.style.backgroundColor = lastRow && lastRow.style.backgroundColor === '#363941' ? '#2B2E35' : '#363941';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            adjustInitialRows();
+        });
+    </script>
 </head>
 <body>
     <div class="sidebar">
@@ -215,8 +291,14 @@
                     <p class="updated">Updated 10 seconds ago.</p>
                 </div>
                 <div class="device-actions">
-                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon"></button>
-                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon"></button>
+                    <div class="action">
+                        <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon"></button>
+                        <span>Shutdown</span>
+                    </div>
+                    <div class="action">
+                        <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon"></button>
+                        <span>Reboot</span>
+                    </div>
                 </div>
                 <div class="network-info">
                     <p>Network<br>Ping 132ms<br>↑ 128mbps ↓ 101mbps</p>
@@ -229,17 +311,22 @@
                     <p class="updated">Last seen 3 days ago.</p>
                 </div>
                 <div class="device-actions">
-                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon"></button>
-                    <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon"></button>
+                    <div class="action">
+                        <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/power.svg" alt="Shutdown Icon"></button>
+                        <span>Shutdown</span>
+                    </div>
+                    <div class="action">
+                        <button><img src="https://raw.githubusercontent.com/ZachRodgers/superadmin/main/reboot.svg" alt="Reboot Icon"></button>
+                        <span>Reboot</span>
+                    </div>
                 </div>
                 <div class="network-info">
                     <p>Network<br>N/A</p>
                 </div>
             </div>
-            <div class="add-new-device">
+            <div class="add-new-device" onclick="addNewDevice()">
                 <div class="device-info">
-                    <h2>0000-0001c</h2>
-                    <p class="status">+ Add New Device</p>
+                    <h2>+ Add New Device</h2>
                 </div>
             </div>
         </div>
