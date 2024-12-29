@@ -205,7 +205,7 @@
         let currentLotId = 2;
         const getNextLotId = () => {
             const letters = 'abcdefghijklmnopqrstuvwxyz';
-            return `0000-0001${letters[currentLotId++]}`;
+            return `0000-0001${letters[currentLotId]}`;
         };
 
         function addNewDevice() {
@@ -243,9 +243,13 @@
             const addButton = document.querySelector('.add-new-device');
             deviceList.insertBefore(newDevice, addButton);
 
-            // Adjust the add button color
+            // Increment lot ID
+            currentLotId++;
+
+            // Adjust the add button color and update its next lot ID
             const totalDevices = deviceList.querySelectorAll('.device').length;
             addButton.style.backgroundColor = totalDevices % 2 === 0 ? '#363941' : '#2B2E35';
+            document.querySelector('.add-new-device .device-info h2').innerText = getNextLotId();
         }
 
         function adjustInitialRows() {
@@ -257,6 +261,7 @@
             const addButton = document.querySelector('.add-new-device');
             const lastRow = rows[rows.length - 1];
             addButton.style.backgroundColor = lastRow && lastRow.style.backgroundColor === '#363941' ? '#2B2E35' : '#363941';
+            document.querySelector('.add-new-device .device-info h2').innerText = getNextLotId();
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -326,7 +331,8 @@
             </div>
             <div class="add-new-device" onclick="addNewDevice()">
                 <div class="device-info">
-                    <h2>+ Add New Device</h2>
+                    <h2>0000-0001c</h2>
+                    <p class="status">+ Add New Device</p>
                 </div>
             </div>
         </div>
